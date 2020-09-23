@@ -1,0 +1,10 @@
+- name: Test Recursion
+  hosts: localhost
+  become: no
+  gather_facts: no
+  tasks:
+    - import_role:
+        name: ansible_recursion
+        tasks_from: recursive
+      vars:
+        passed_var: 1

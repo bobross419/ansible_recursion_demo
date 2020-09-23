@@ -1,0 +1,15 @@
+- name: recursion
+  when: "{{ passed_var }} < 9"
+  block:
+  - set_fact:
+      this_var: "{{ (passed_var | int ) + 1 }}"
+
+  - debug:
+      msg: "{{ this_var }}"
+
+  - include_role:
+      name: ansible_recursion
+      tasks_from: recursive
+    vars:
+      passed_var: "{{ this_var|int }}"
+
